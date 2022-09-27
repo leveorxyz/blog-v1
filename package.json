@@ -1,0 +1,32 @@
+{
+  "name": "@example/with-tailwindcss",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "slice": "start-slicemachine"
+  },
+  "dependencies": {
+    "@astrojs/react": "^1.1.4",
+    "@astrojs/tailwind": "^2.0.1",
+    "@prismicio/client": "^6.7.1",
+    "@prismicio/helpers": "^2.3.5",
+    "@prismicio/react": "^2.5.0",
+    "astro": "^1.3.0",
+    "autoprefixer": "^10.4.7",
+    "canvas-confetti": "^1.5.1",
+    "postcss": "^8.4.14",
+    "prismic-dom": "^2.2.7",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "slice-machine-ui": "^0.4.2"
+  }
+}

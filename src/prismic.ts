@@ -21,7 +21,7 @@ export function getAllPosts(limit: number = 10) {
 export function getAllCategories() {
   return Client.getAllByType("category", {
     orderings: {
-      field: "document.title",
+      field: "document.data.title",
       direction: "desc",
     },
   });

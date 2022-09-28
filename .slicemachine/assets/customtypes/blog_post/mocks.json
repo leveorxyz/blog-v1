@@ -11,7 +11,7 @@
   "lang": "en-us",
   "alternate_languages": [],
   "data": {
-    "title": "hidden",
+    "title": "vast",
     "category": {
       "id": "mock_document_id",
       "link_type": "Document",
@@ -36,7 +36,7 @@
         }
       }
     ],
-    "date": "2018-05-30",
+    "date": "2017-05-28",
     "thumbnail": {
       "dimensions": {
         "width": 900,
@@ -44,8 +44,15 @@
       },
       "alt": null,
       "copyright": null,
-      "url": "https://images.unsplash.com/photo-1596195689404-24d8a8d1c6ea"
+      "url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869"
     },
+    "summary": [
+      {
+        "type": "paragraph",
+        "text": "Ipsum ullamco occaecat amet consequat voluptate duis Lorem nulla. Quis ex dolore eu voluptate ea proident duis consequat aliquip incididunt commodo adipisicing. Dolor consequat amet sit aliquip cupidatat anim qui sunt veniam in elit.",
+        "spans": []
+      }
+    ],
     "slices": []
   }
 }

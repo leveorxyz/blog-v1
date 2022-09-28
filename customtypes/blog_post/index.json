@@ -62,6 +62,15 @@
           "thumbnails": []
         }
       },
+      "summary": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Summary",
+          "placeholder": "Write a summary in 3 sentences",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink,rtl"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

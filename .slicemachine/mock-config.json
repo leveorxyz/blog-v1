@@ -1,7 +1,13 @@
 {
   "_cts": {
     "blog_post": {
-      "custom": {}
+      "custom": {},
+      "summary": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      }
     },
     "author": {
       "links": {}

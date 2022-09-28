@@ -1,0 +1,19 @@
+[
+  {
+    "variation": "default",
+    "version": "sktwi1xtmkfgx8626",
+    "items": [
+      {}
+    ],
+    "primary": {
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Officia id magna magna fugiat aliquip labore nulla nostrud. Esse ullamco eu adipisicing esse voluptate eiusmod mollit dolore pariatur commodo.",
+          "spans": []
+        }
+      ]
+    },
+    "slice_type": "content"
+  }
+]

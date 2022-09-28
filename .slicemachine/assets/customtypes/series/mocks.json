@@ -1,0 +1,23 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "series",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": "moon",
+    "to_be_published": [
+      {
+        "type": "paragraph",
+        "text": "Est ut nisi ipsum eiusmod. Do laborum exercitation veniam et deserunt fugiat nostrud voluptate cupidatat aute anim cupidatat deserunt quis nostrud.",
+        "spans": []
+      }
+    ]
+  }
+}

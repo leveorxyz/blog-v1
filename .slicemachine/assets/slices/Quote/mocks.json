@@ -1,0 +1,26 @@
+[
+  {
+    "variation": "default",
+    "version": "sktwi1xtmkfgx8626",
+    "items": [
+      {}
+    ],
+    "primary": {
+      "quote": [
+        {
+          "type": "paragraph",
+          "text": "Sunt proident eiusmod velit anim incididunt magna ipsum excepteur eu qui aliquip occaecat.",
+          "spans": []
+        }
+      ],
+      "quote_author": [
+        {
+          "type": "paragraph",
+          "text": "Qui ut nulla enim enim mollit. Incididunt aute aute culpa dolore adipisicing sunt proident enim exercitation. Minim laborum nulla ea in incididunt aute.",
+          "spans": []
+        }
+      ]
+    },
+    "slice_type": "quote"
+  }
+]

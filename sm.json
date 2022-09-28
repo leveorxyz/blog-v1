@@ -1,0 +1,8 @@
+{
+  "apiEndpoint": "https://leveor.prismic.io/api/v2",
+  "libraries": [
+    "@/slices"
+  ],
+  "framework": "react",
+  "_latest": "0.4.2"
+}

@@ -1,16 +1,29 @@
-import { createClient, predicate } from "@prismicio/client";
+import { createClient, getRepositoryEndpoint } from "@prismicio/client";
 
-const API_URL = `https://leveor.prismic.io/api/v2`;
+const repoName = "leveor";
+const endpoint = getRepositoryEndpoint(repoName);
+const Client = createClient(endpoint);
 
-const Client = createClient(API_URL);
-
-export function getPageByUID(uid: string) {
-  return Client.getByUID("page", uid);
+export function getPostByUID(uid: string) {
+  return Client.getByUID("blog_post", uid);
 }
 
-export function getAllPages() {
-  return Client.getAllByType(
-    predicate.at("document.type", "page"),
-    { orderings: "[my.page.order]" }
-  );
+export function getAllPosts(limit: number = 10) {
+  return Client.getAllByType("blog_post", {
+    orderings: {
+      field: "document.first_publication_date",
+      direction: "desc",
+    },
+    limit: limit,
+  });
 }
+
+export function getAllCategories() {
+  return Client.getAllByType("category", {
+    orderings: {
+      field: "document.title",
+      direction: "desc",
+    },
+  });
+}
+

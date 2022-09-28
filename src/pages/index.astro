@@ -1,24 +1,40 @@
 ---
 // Component Imports
-import Button from '../components/Button.astro';
+import Layout from "../layouts/main.astro";
+import PostPreview from "../components/PostPreview.astro";
+import { getAllPosts } from "../prismic";
+
+const posts = await getAllPosts();
+// console.log(
+//   JSON.stringify(
+//     posts.map((post) => ({
+//       uid: post.uid,
+//       title: post.data.title,
+//     })),
+//     null,
+//     2
+//   )
+// );
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+<Layout>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center content-center p-6"
+  >
+    {
+      posts.map((post) => (
+        <PostPreview
+          title={post.data.title}
+          summary={post.data.summary ? post.data.summary[0]?.text : ""}
+          thumbnail={post.data.thumbnail.url}
+          url={post.uid!}
+          tags={post.tags}
+          publicationDate={post.first_publication_date}
+        />
+      ))
+    }
+  </div>
+</Layout>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title: string;
+  summary: string;
+  thumbnail: string;
+  url: string;
+  tags?: string[];
+  publicationDate: string;
+}
+
+const { title, summary, thumbnail, url, tags } = Astro.props;
+---
+
+<div id="post" class="relative group -translate-y-6 z-auto">
+  <img src={thumbnail} class="translate-y-12 -z-10 bg-gray-800" />
+  <div class="absolute z-10">
+    <h1
+      class="text-3xl lg:text-5xl font-bold text-right group-hover:drop-shadow-[5px_2px_0_#6d28d9]"
+    >
+      {title}
+    </h1>
+    <p class="line-clamp-3 mt-3 text-justify">{summary}</p>
+  </div>
+</div>

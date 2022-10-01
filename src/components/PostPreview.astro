@@ -1,0 +1,38 @@
+---
+export interface Props {
+  title: string;
+  summary: string;
+  thumbnail: string;
+  url: string;
+  tags?: string[];
+  publicationDate: string;
+}
+
+import formatDistance from "date-fns/formatDistance";
+const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
+---
+
+<div class="flex w-full items-center justify-between">
+  <div class="max-w-[15%] flex-shrink-1 flex-grow-0 mr-3 md:mr-6">
+    <img
+      src={thumbnail}
+      class="bg-gray-800 object-cover aspect-square rounded-md"
+    />
+  </div>
+
+  <div class="flex-grow">
+    <h1 class="text-xl md:text-2xl font-bold">
+      {title}
+    </h1>
+    <time datetime={publicationDate} class="text-sm text-gray-400"
+      >{
+        formatDistance(new Date(publicationDate), Date.now(), {
+          addSuffix: true,
+        })
+      }
+    </time>
+    <div class="hidden md:block">
+      <p class="line-clamp-2 mt-3">{summary}</p>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,10 @@
 ---
 // Component Imports
 import Layout from "../layouts/main.astro";
-import PostPreview from "../components/PostPreview.astro";
-import { getAllPosts } from "../prismic";
+import PostPreview from "../components/LatestPostPreview.astro";
+import { getAllPosts, getLatestPost } from "../prismic";
 
-const posts = await getAllPosts();
-// console.log(
-//   JSON.stringify(
-//     posts.map((post) => ({
-//       uid: post.uid,
-//       title: post.data.title,
-//     })),
-//     null,
-//     2
-//   )
-// );
+const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -22,14 +12,31 @@ const posts = await getAllPosts();
 
 <Layout>
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center content-center p-6"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center content-center gap-6 md:gap-12 lg:gap-24"
   >
+    <div class="col-span-1 md:col-span-2">
+      <PostPreview
+        title={latestPost.data.title!}
+        summary={// @ts-ignore
+        latestPost.data.summary ? latestPost.data.summary[0]?.text : ""}
+        thumbnail={latestPost.data.thumbnail.url!}
+        url={latestPost.uid!}
+        tags={latestPost.tags}
+        publicationDate={latestPost.first_publication_date}
+      />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     {
       posts.map((post) => (
         <PostPreview
-          title={post.data.title}
-          summary={post.data.summary ? post.data.summary[0]?.text : ""}
-          thumbnail={post.data.thumbnail.url}
+          title={post.data.title!}
+          summary={
+            // @ts-ignore
+            post.data.summary ? post.data.summary[0]?.text : ""
+          }
+          thumbnail={post.data.thumbnail.url!}
           url={post.uid!}
           tags={post.tags}
           publicationDate={post.first_publication_date}

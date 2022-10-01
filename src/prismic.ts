@@ -8,14 +8,14 @@ export function getPostByUID(uid: string) {
   return Client.getByUID("blog_post", uid);
 }
 
-export function getAllPosts(limit: number = 10) {
-  return Client.getAllByType("blog_post", {
+export async function getAllPosts() {
+  const posts = await Client.getAllByType("blog_post", {
     orderings: {
       field: "document.first_publication_date",
       direction: "desc",
-    },
-    limit: limit,
+    }
   });
+  return posts.slice(1);
 }
 
 export function getAllCategories() {
@@ -27,3 +27,14 @@ export function getAllCategories() {
   });
 }
 
+export async function getLatestPost() {
+  const [post] = await Client.getAllByType("blog_post", {
+    orderings: {
+      field: "document.first_publication_date",
+      direction: "desc",
+    },
+    limit: 1,
+  });
+
+  return post;
+}

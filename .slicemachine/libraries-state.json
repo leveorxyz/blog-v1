@@ -1,6 +1,145 @@
 {
   "slices": {
     "components": {
+      "code": {
+        "library": "slices",
+        "id": "code",
+        "name": "CodeBlock",
+        "description": "Code",
+        "model": {
+          "id": "code",
+          "type": "SharedSlice",
+          "name": "CodeBlock",
+          "description": "Code",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Code",
+              "primary": {
+                "content": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "content",
+                    "placeholder": "",
+                    "allowTargetBlank": true,
+                    "single": "preformatted"
+                  }
+                },
+                "language": {
+                  "type": "Select",
+                  "config": {
+                    "label": "Language",
+                    "placeholder": "Select the programming language",
+                    "options": [
+                      "arduino",
+                      "asciidoc",
+                      "awk",
+                      "bash",
+                      "basic",
+                      "brainfuck",
+                      "csharp",
+                      "c",
+                      "cpp",
+                      "cmake",
+                      "css",
+                      "cisco",
+                      "clojure",
+                      "coffeescript",
+                      "crystal",
+                      "curl",
+                      "dart",
+                      "diff",
+                      "django",
+                      "dns",
+                      "dockerfile",
+                      "elixir",
+                      "elm",
+                      "erlang",
+                      "xlsx",
+                      "fsharp",
+                      "golang",
+                      "gradle",
+                      "graphql",
+                      "haskell",
+                      "http",
+                      "html",
+                      "hlsl",
+                      "ini",
+                      "json",
+                      "java",
+                      "javascript",
+                      "julia",
+                      "kotlin",
+                      "less",
+                      "lua",
+                      "makefile",
+                      "markdown",
+                      "matlab",
+                      "nginx",
+                      "nim",
+                      "nix",
+                      "ocaml",
+                      "objectivec",
+                      "openscad",
+                      "glsl",
+                      "perl",
+                      "php",
+                      "protobuf",
+                      "python",
+                      "reasonml",
+                      "ruby",
+                      "rust",
+                      "scss",
+                      "sql",
+                      "scala",
+                      "shell",
+                      "solidity",
+                      "svelte",
+                      "swift",
+                      "terraform",
+                      "typescript",
+                      "xml",
+                      "yaml",
+                      "tex",
+                      "toml"
+                    ]
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "content": [
+                {
+                  "type": "paragraph",
+                  "text": "Est ullamco pariatur incididunt sit et duis fugiat velit aliqua anim. Minim duis excepteur non.",
+                  "spans": []
+                }
+              ],
+              "language": "graphql"
+            },
+            "slice_type": "code"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
       "embed": {
         "library": "slices",
         "id": "embed",

@@ -10,29 +10,43 @@ export interface Props {
 
 import formatDistance from "date-fns/formatDistance/index.js";
 const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
+const postURL = `post/${url}`;
 ---
 
-<div class="flex w-full items-center justify-between">
-  <div class="max-w-[15%] flex-shrink-1 flex-grow-0 mr-3 md:mr-6">
+<div
+  class="flex w-full items-center justify-between hover:bg-[#191919] border border-[#191919] hover:border-violet-500 before:hidden hover:before:block before:absolute before:w-full before:h-full before:top-2 before:left-2 before:bg-gradient-to-r before:from-teal-500 before:via-sky-500 before:to-violet-500 before:-z-10 relative p-3"
+>
+  <a href={postURL} class="max-w-[15%] flex-shrink-1 flex-grow-0 mr-3 md:mr-6">
     <img
       src={thumbnail}
       class="bg-gray-800 object-cover aspect-square rounded-md"
     />
-  </div>
+  </a>
 
   <div class="flex-grow">
-    <h1 class="text-xl md:text-2xl font-bold">
-      {title}
-    </h1>
-    <time datetime={publicationDate} class="text-sm text-gray-400"
-      >{
-        formatDistance(new Date(publicationDate), Date.now(), {
-          addSuffix: true,
-        })
-      }
-    </time>
+    <a href={postURL}>
+      <h1 class="text-xl md:text-2xl font-bold">
+        {title}
+      </h1>
+      <time datetime={publicationDate} class="text-sm text-gray-400"
+        >{
+          formatDistance(new Date(publicationDate), Date.now(), {
+            addSuffix: true,
+          })
+        }
+      </time>
+    </a>
     <div class="hidden md:block">
       <p class="line-clamp-2 mt-3">{summary}</p>
     </div>
+    <ul class="flex">
+      {
+        tags?.map((tag) => (
+          <li class="mr-3 inline-block text-sm text-violet-400 before:content-['#'] last-of-type:mr-0">
+            {tag}
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </div>

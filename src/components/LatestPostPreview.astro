@@ -18,14 +18,21 @@ const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
   >
     Latest
   </h2>
-  <div class="relative group z-auto flex-grow-1 pl-2">
-    <img src={thumbnail} class="-z-10 bg-gray-800 aspect-video object-cover" />
+  <div class="group relative z-auto flex-grow-1 pl-2">
+    <a href={`/post/` + url}>
+      <img
+        src={thumbnail}
+        class="-z-10 bg-gray-800 aspect-video object-cover"
+      />
+    </a>
     <div class="z-10 -translate-y-8">
-      <h1
-        class="text-3xl md:text-5xl font-bold text-right drop-shadow-[5px_2px_0_#6d28d9]"
-      >
-        {title}
-      </h1>
+      <a href={`/post/` + url}>
+        <h1
+          class="text-3xl md:text-5xl font-bold text-right drop-shadow-[5px_2px_0_#6d28d9] group-hover:underline"
+        >
+          {title}
+        </h1>
+      </a>
       <time datetime={publicationDate} class="text-sm text-gray-400"
         >{
           formatDistance(new Date(publicationDate), Date.now(), {

@@ -40,7 +40,16 @@ const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
           })
         }
       </time>
-      <p class="line-clamp-3 mt-3 text-justify">{summary}</p>
+      <ul class="flex mt-3">
+        {
+          tags?.map((tag) => (
+            <li class="mr-3 inline-block text-sm text-violet-400 before:content-['#'] last-of-type:mr-0">
+              {tag}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="line-clamp-3 text-justify">{summary}</p>
     </div>
   </div>
 </div>

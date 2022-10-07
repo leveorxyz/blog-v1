@@ -29,7 +29,7 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
 
     <div class="col-span-1 md:col-span-2 lg:col-span-7">
       {
-        posts.map((post) => (
+        posts.slice(1).map((post) => (
           <PostPreview
             title={post.data.title!}
             summary={

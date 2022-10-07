@@ -9,13 +9,12 @@ export function getPostByUID(uid: string) {
 }
 
 export async function getAllPosts() {
-  const posts = await Client.getAllByType("blog_post", {
+  return Client.getAllByType("blog_post", {
     orderings: {
       field: "document.first_publication_date",
       direction: "desc",
     }
   });
-  return posts.slice(1);
 }
 
 export function getAllCategories() {

@@ -1,13 +1,20 @@
 ---
 import { getAllPosts } from "../../prismic";
+import Layout from "../../layouts/main.astro";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
-  console.log(posts);
+  console.log(posts.map((post) => post.data.summary));
   return posts.map((post) => ({ params: { slug: post.uid }, props: { post } }));
 }
 
 const { post } = Astro.props;
 ---
 
-<h1>{post.data.title}</h1>
+<Layout
+  title={post.data.title}
+  summary={post.data.summary[0].text}
+  tags={post.tags}
+>
+  <h1>{post.data.title}</h1>
+</Layout>

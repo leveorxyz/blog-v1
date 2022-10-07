@@ -1,0 +1,13 @@
+---
+import { getAllPosts } from "../../prismic";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  console.log(posts);
+  return posts.map((post) => ({ params: { slug: post.uid }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<h1>{post.data.title}</h1>

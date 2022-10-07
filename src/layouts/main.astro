@@ -1,6 +1,12 @@
 ---
+export type Props = {
+  title?: string;
+  summary?: string;
+  tags?: string[];
+};
+
 import { getAllCategories } from "../prismic";
-const { title } = Astro.props;
+const { title, summary, tags } = Astro.props;
 
 const categories = await getAllCategories();
 ---
@@ -9,8 +15,14 @@ const categories = await getAllCategories();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title ?? "Blog | Leveor"}</title>
+    <meta
+      name="description"
+      content={summary ??
+        "Leveor's blog - where we write about the stuff we do"}
+    />
+    {tags && <meta name="keywords" content={tags?.join(",") ?? ""} />}
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body
     class="min-h-screen bg-[#131313] text-gray-50 py-3 md:py-6 lg:py-12 px-6 md:px-12 lg:px-24"
@@ -28,11 +40,11 @@ const categories = await getAllCategories();
         {
           categories.map((c) => (
             <a
-              class="relative first-of-type:pl-0 pl-3 md:pl-6 font-light
-							before:inline-block before:content-['/'] before:pr-1
-							hover:bg-gradient-to-r
-							hover:from-teal-400 hover:via-sky-400 hover:to-purple-400
-							hover:bg-clip-text hover:text-transparent"
+              class="relative pl-3 font-light before:inline-block before:pr-1
+							before:content-['/'] first-of-type:pl-0 hover:bg-gradient-to-r
+							hover:from-teal-400
+							hover:via-sky-400 hover:to-purple-400 hover:bg-clip-text
+							hover:text-transparent md:pl-6"
               href={`/category/${c.uid}`}
             >
               {c.data.title}

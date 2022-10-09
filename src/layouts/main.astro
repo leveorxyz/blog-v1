@@ -5,6 +5,8 @@ export type Props = {
   tags?: string[];
 };
 
+import "@fontsource/raleway";
+import "@fontsource/space-mono";
 import { getAllCategories } from "../prismic";
 const { title, summary, tags } = Astro.props;
 
@@ -56,5 +58,25 @@ const categories = await getAllCategories();
       </div>
     </nav>
     <slot />
+    <style is:global>
+      html {
+        font-family: "Raleway", sans-serif;
+      }
+      time,
+      pre,
+      code {
+        font-family: "Space Mono", monospace;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Space Mono", monospace;
+        font-weight: 900;
+        color: #fff;
+      }
+    </style>
   </body>
 </html>

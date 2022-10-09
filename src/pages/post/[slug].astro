@@ -1,10 +1,11 @@
 ---
 import { getAllPosts } from "../../prismic";
 import Layout from "../../layouts/main.astro";
+import SliceZone from "../../components/SliceZone.astro";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
-  console.log(posts.map((post) => post.data.summary));
+  // console.log(posts.map((post) => post.data.slices));
   return posts.map((post) => ({ params: { slug: post.uid }, props: { post } }));
 }
 
@@ -16,5 +17,15 @@ const { post } = Astro.props;
   summary={post.data.summary[0].text}
   tags={post.tags}
 >
-  <h1>{post.data.title}</h1>
+  <div class="flex flex-row justify-center">
+    <article class="w-[95%] lg:w-[80ch]">
+      <h1 class="text-4xl font-bold">{post.data.title}</h1>
+      <img
+        src={post.data.thumbnail.url}
+        alt={post.data.thumbnail.alt}
+        class="my-6 aspect-video object-cover"
+      />
+      <SliceZone slices={post.data.slices} />
+    </article>
+  </div>
 </Layout>

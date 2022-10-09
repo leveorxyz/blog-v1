@@ -1,0 +1,23 @@
+---
+const { slices } = Astro.props;
+---
+
+<div>
+  {
+    slices.map((slice: any) => {
+      switch (slice.slice_type) {
+        case "code":
+          return null;
+        case "content":
+          return null;
+        default:
+          throw new Error(`Unknown slice type: ${slice.slice_type}`);
+      }
+    })
+  }
+</div>
+
+<style>
+  .richtext {
+  }
+</style>

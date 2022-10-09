@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@prismicio/types": "^0.2.3",
+    "@types/prismic-dom": "^2.1.1",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.5.5",
     "prettier-plugin-tailwindcss": "^0.1.13",

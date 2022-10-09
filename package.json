@@ -14,8 +14,6 @@
   "dependencies": {
     "@astrojs/react": "^1.1.4",
     "@astrojs/tailwind": "^2.0.1",
-    "@fontsource/raleway": "^4.5.11",
-    "@fontsource/space-mono": "^4.5.10",
     "@prismicio/client": "^6.7.1",
     "@prismicio/helpers": "^2.3.5",
     "@prismicio/react": "^2.5.0",

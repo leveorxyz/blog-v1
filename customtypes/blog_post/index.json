@@ -32,7 +32,7 @@
       "author": {
         "type": "Group",
         "config": {
-          "label": "Authos",
+          "label": "Author",
           "fields": {
             "author": {
               "type": "Link",

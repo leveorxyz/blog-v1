@@ -1,0 +1,69 @@
+---
+const { slice } = Astro.props;
+import * as prismicH from "@prismicio/helpers";
+
+// console.log(JSON.stringify(slice, null, 2));
+const linkResolver = (doc: any) => "/" + doc.uid;
+
+const html = prismicH.asHTML(slice.primary.content, null, {
+  heading1: ({ children }) =>
+    `<h1 class="text-2xl lg:text-4xl py-2">${children}</h1>`,
+  heading2: ({ children }) =>
+    `<h2 class="text-xl lg:text-2xl py-2">${children}</h2>`,
+  heading3: ({ children }) =>
+    `<h3 class="text-lg lg:text-xl py-2">${children}</h3>`,
+  heading4: ({ children }) =>
+    `<h4 class="text-lg lg:text-xl py-2">${children}</h4>`,
+  heading5: ({ children }) =>
+    `<h5 class="text-lg lg:text-xl py-2">${children}</h5>`,
+  heading6: ({ children }) =>
+    `<h6 class="text-lg lg:text-xl py-2">${children}</h6>`,
+  paragraph: ({ children }) => `<p class="py-3 text-base">${children}</p>`,
+  preformatted: ({ node }) => `<pre>${JSON.stringify(node.text)}</pre>`,
+  strong: ({ children }) =>
+    `<strong class="font-bold text-teal-300">${children}</strong>`,
+  // em: ({ children }) => `<em>${children}</em>`,
+  // listItem: ({ children }) => `<li>${children}</li>`,
+  // oListItem: ({ children }) => `<li>${children}</li>`,
+  // list: ({ children }) => `<ul>${children}</ul>`,
+  // oList: ({ children }) => `<ol>${children}</ol>`,
+  // image: ({ node }) => {
+  //   const linkUrl = node.linkTo ? linkResolver(node.linkTo) : null;
+  //   const linkTarget =
+  //     node.linkTo && node.linkTo.url
+  //       ? `target="${node.linkTo.url}" rel="noopener"`
+  //       : "";
+  //   const wrapperClassList = [node.type || "", "block-img"];
+  //   const img = `<img src="${node.url}" alt="${
+  //     node.alt ? node.alt : ""
+  //   }" copyright="${node.copyright ? node.copyright : ""}" />`;
+
+  //   return `
+  //       <p class="${wrapperClassList.join(" ")}">
+  //         ${linkUrl ? `<a ${linkTarget} href="${linkUrl}">${img}</a>` : img}
+  //       </p>
+  //     `;
+  // },
+  embed: ({ node }) => `
+        <div data-oembed="${node.oembed.embed_url}"
+          data-oembed-type="${node.oembed.type}"
+          data-oembed-provider="${node.oembed.provider_name}"
+          class="bg-[#181818] p-1 rounded-sm">
+          ${node.oembed.html}
+        </div>
+      `,
+  hyperlink: ({ node, children }) => {
+    const target = node.data.url
+      ? `target="${node.data.url}" rel="noopener"`
+      : "";
+    const url = linkResolver(node.data);
+    return `<a ${target} href="${url}" class="underline text-teal-300 hover:text-sky-300">${children}</a>`;
+  },
+  label: ({ node, children }) => {
+    return `<span>${children}</span>`;
+  },
+  span: ({ text }) => (text ? text : ""),
+});
+---
+
+<div set:html={html}></div>

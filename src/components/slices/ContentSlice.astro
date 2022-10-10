@@ -23,10 +23,11 @@ const html = prismicH.asHTML(slice.primary.content, null, {
   strong: ({ children }) =>
     `<strong class="font-bold text-teal-300">${children}</strong>`,
   // em: ({ children }) => `<em>${children}</em>`,
+  list: ({ children }) => `<ul class="list-disc ml-6 pr-6">${children}</ul>`,
+  oList: ({ children }) =>
+    `<ol class="list-decimal ml-6 pr-6">${children}</ol>`,
   // listItem: ({ children }) => `<li>${children}</li>`,
   // oListItem: ({ children }) => `<li>${children}</li>`,
-  // list: ({ children }) => `<ul>${children}</ul>`,
-  // oList: ({ children }) => `<ol>${children}</ol>`,
   // image: ({ node }) => {
   //   const linkUrl = node.linkTo ? linkResolver(node.linkTo) : null;
   //   const linkTarget =

@@ -1,5 +1,6 @@
 ---
 const { slices } = Astro.props;
+import ContentSlice from "./slices/ContentSlice.astro";
 ---
 
 <div>
@@ -9,15 +10,10 @@ const { slices } = Astro.props;
         case "code":
           return null;
         case "content":
-          return null;
+          return <ContentSlice slice={slice} />;
         default:
           throw new Error(`Unknown slice type: ${slice.slice_type}`);
       }
     })
   }
 </div>
-
-<style>
-  .richtext {
-  }
-</style>

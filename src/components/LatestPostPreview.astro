@@ -3,13 +3,15 @@ export interface Props {
   title: string;
   summary: string;
   thumbnail: string;
+  thumbnail_alt: string;
   url: string;
   tags?: string[];
   publicationDate: string;
 }
 
 import formatDistance from "date-fns/formatDistance/index.js";
-const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
+const { title, summary, thumbnail, thumbnail_alt, url, tags, publicationDate } =
+  Astro.props;
 ---
 
 <div class="flex content-start">
@@ -22,6 +24,7 @@ const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
     <a href={`/post/` + url}>
       <img
         src={thumbnail}
+        alt={thumbnail_alt}
         class="-z-10 bg-gray-800 aspect-video object-cover"
       />
     </a>

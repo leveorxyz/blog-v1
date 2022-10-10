@@ -21,6 +21,7 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
         summary={// @ts-ignore
         latestPost.data.summary ? latestPost.data.summary[0]?.text : ""}
         thumbnail={latestPost.data.thumbnail.url!}
+        thumbnail_alt={latestPost.data.thumbnail.alt!}
         url={latestPost.uid!}
         tags={latestPost.tags}
         publicationDate={latestPost.first_publication_date}
@@ -37,6 +38,7 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
               post.data.summary ? post.data.summary[0]?.text : ""
             }
             thumbnail={post.data.thumbnail.url!}
+            thumbnail_alt={post.data.thumbnail.alt!}
             url={post.uid!}
             tags={post.tags}
             publicationDate={post.first_publication_date}

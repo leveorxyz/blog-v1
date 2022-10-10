@@ -3,13 +3,15 @@ export interface Props {
   title: string;
   summary: string;
   thumbnail: string;
+  thumbnail_alt: string;
   url: string;
   tags?: string[];
   publicationDate: string;
 }
 
 import formatDistance from "date-fns/formatDistance/index.js";
-const { title, summary, thumbnail, url, tags, publicationDate } = Astro.props;
+const { title, summary, thumbnail, thumbnail_alt, url, tags, publicationDate } =
+  Astro.props;
 const postURL = `post/${url}`;
 ---
 
@@ -19,6 +21,7 @@ const postURL = `post/${url}`;
   <a href={postURL} class="max-w-[15%] flex-shrink-1 flex-grow-0 mr-3 md:mr-6">
     <img
       src={thumbnail}
+      alt={thumbnail_alt}
       class="bg-gray-800 object-cover aspect-square rounded-md"
     />
   </a>

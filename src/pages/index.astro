@@ -3,19 +3,19 @@
 import Layout from "../layouts/main.astro";
 import LatestPostPreview from "../components/LatestPostPreview.astro";
 import PostPreview from "../components/PostPreview.astro";
+import Updates from "../components/Updates.astro";
 import { getAllPosts, getLatestPost } from "../prismic";
 
 const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <Layout>
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 place-items-center content-center gap-6 md:gap-12"
-  >
-    <div class="col-span-1 md:col-span-2 lg:col-span-7">
+  <div class="block md:hidden col-span-1 mb-6">
+    <Updates />
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 md:gap-12">
+    <div class="col-span-1 md:col-span-4 lg:col-span-7">
       <LatestPostPreview
         title={latestPost.data.title!}
         summary={// @ts-ignore
@@ -28,7 +28,11 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
       />
     </div>
 
-    <div class="col-span-1 md:col-span-2 lg:col-span-7">
+    <div class="hidden md:block col-span-1 md:col-span-2 lg:col-span-5">
+      <Updates />
+    </div>
+
+    <div class="col-span-1 md:col-span-6 lg:col-span-12">
       {
         posts.slice(1).map((post) => (
           <PostPreview
@@ -48,3 +52,22 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
     </div>
   </div>
 </Layout>
+
+<style>
+  .clipped-tr-lg {
+    -webkit-clip-path: polygon(90% 0, 100% 10%, 100% 100%, 0 100%, 0 0);
+    clip-path: polygon(90% 0, 100% 10%, 100% 100%, 0 100%, 0 0);
+  }
+  .clipped-tr-md {
+    -webkit-clip-path: polygon(90% 0, 100% 10%, 100% 100%, 0 100%, 0 0);
+    clip-path: polygon(90% 0, 100% 10%, 100% 100%, 0 100%, 0 0);
+  }
+  .clipped-tr-sm {
+    -webkit-clip-path: polygon(92% 0, 100% 15%, 100% 100%, 0 100%, 0 0);
+    clip-path: polygon(92% 0, 100% 15%, 100% 100%, 0 100%, 0 0);
+  }
+
+  .mono {
+    font-family: "Space Mono", monospace;
+  }
+</style>

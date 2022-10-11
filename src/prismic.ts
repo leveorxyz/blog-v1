@@ -17,6 +17,15 @@ export async function getAllPosts() {
   });
 }
 
+export async function getAllUpdates() {
+  return Client.getAllByType("update", {
+    orderings: {
+      field: "document.data.date",
+      direction: "desc",
+    }
+  });
+}
+
 export function getAllCategories() {
   return Client.getAllByType("category", {
     orderings: {

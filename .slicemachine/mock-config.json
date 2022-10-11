@@ -27,7 +27,8 @@
           "blocks": 1
         }
       }
-    }
+    },
+    "update": {}
   },
   "slices": {
     "Post": {

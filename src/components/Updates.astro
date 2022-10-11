@@ -1,31 +1,40 @@
 ---
+import format from "date-fns/format";
 import { getAllUpdates } from "../prismic";
 
 const updates = await getAllUpdates();
 ---
 
 <div class="p-3 bg-violet-700 max-h-fit">
-  <h2 class="text-2xl lg:text-4xl font-bold mb-3 text-teal-300">Updates</h2>
+  <h2 class="text-2xl lg:text-4xl font-bold text-teal-300">Updates</h2>
+  <p class="text-sm mb-6">What we're upto, at Leveor</p>
   <ul class="text-sm lg:text-base">
     {
       updates.slice(0, 5).map((update, idx) => (
         <li class="relative mb-3 border-b border-teal-400 pb-1 before:inline-block before:content-[] last:mb-0">
-          <span class="inline-flex h-[25px] w-[25px] content-center justify-center rounded-full bg-purple-900 pt-[2.5px] text-center text-sm">
-            <span class="mono inline-block">{idx}</span>
-          </span>
-          <span class="inline">
-            {
-              // @ts-ignore
-              update.data.url.url ? (
+          {update.data.date && (
+            <time datetime={update.data.date} class="text-xs">
+              {format(new Date(update.data.date), "dd MMM, yyyy")}
+            </time>
+          )}
+          <p>
+            <span class="inline-flex h-[25px] w-[25px] content-center justify-center rounded-full bg-purple-900 pt-[2.5px] text-center text-sm">
+              <span class="mono inline-block">{idx + 1}</span>
+            </span>
+            <span class="inline">
+              {
                 // @ts-ignore
-                <a href={update.data.url.url}>
-                  {update.data.title}&nbsp;&#x2197;
-                </a>
-              ) : (
-                <span class="inline">{update.data.title}</span>
-              )
-            }
-          </span>
+                update.data.url.url ? (
+                  // @ts-ignore
+                  <a href={update.data.url.url}>
+                    {update.data.title}&nbsp;&#x2197;
+                  </a>
+                ) : (
+                  <span class="inline">{update.data.title}</span>
+                )
+              }
+            </span>
+          </p>
         </li>
       ))
     }

@@ -103,7 +103,7 @@ interface BlogPostDocumentData {
      */
     category: prismicT.RelationField<"category">;
     /**
-     * Authos field in *Blog Post*
+     * Author field in *Blog Post*
      *
      * - **Field Type**: Group
      * - **Placeholder**: *None*
@@ -159,12 +159,12 @@ interface BlogPostDocumentData {
     slices: prismicT.SliceZone<BlogPostDocumentDataSlicesSlice>;
 }
 /**
- * Item in Blog Post → Authos
+ * Item in Blog Post → Author
  *
  */
 export interface BlogPostDocumentDataAuthorItem {
     /**
-     * author field in *Blog Post → Authos*
+     * author field in *Blog Post → Author*
      *
      * - **Field Type**: Content Relationship
      * - **Placeholder**: *None*
@@ -178,7 +178,7 @@ export interface BlogPostDocumentDataAuthorItem {
  * Slice for *Blog Post → Slice Zone*
  *
  */
-type BlogPostDocumentDataSlicesSlice = ContentSlice;
+type BlogPostDocumentDataSlicesSlice = ContentSlice | CodeSlice;
 /**
  * Blog Post document from Prismic
  *
@@ -270,7 +270,102 @@ interface SeriesDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type SeriesDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<SeriesDocumentData>, "series", Lang>;
-export type AllDocumentTypes = AuthorDocument | BlogPostDocument | CategoryDocument | SeriesDocument;
+/** Content for Update documents */
+interface UpdateDocumentData {
+    /**
+     * Title field in *Update*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: One liner short update
+     * - **API ID Path**: update.title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    title: prismicT.KeyTextField;
+    /**
+     * Date field in *Update*
+     *
+     * - **Field Type**: Date
+     * - **Placeholder**: *None*
+     * - **API ID Path**: update.date
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/date
+     *
+     */
+    date: prismicT.DateField;
+    /**
+     * URL field in *Update*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: Link if any
+     * - **API ID Path**: update.url
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    url: prismicT.LinkField;
+}
+/**
+ * Update document from Prismic
+ *
+ * - **API ID**: `update`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type UpdateDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<UpdateDocumentData>, "update", Lang>;
+export type AllDocumentTypes = AuthorDocument | BlogPostDocument | CategoryDocument | SeriesDocument | UpdateDocument;
+/**
+ * Primary content in CodeBlock → Primary
+ *
+ */
+interface CodeSliceDefaultPrimary {
+    /**
+     * content field in *CodeBlock → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: code.primary.content
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    content: prismicT.RichTextField;
+    /**
+     * Language field in *CodeBlock → Primary*
+     *
+     * - **Field Type**: Select
+     * - **Placeholder**: Select the programming language
+     * - **API ID Path**: code.primary.language
+     * - **Documentation**: https://prismic.io/docs/core-concepts/select
+     *
+     */
+    language: prismicT.SelectField<"arduino" | "asciidoc" | "awk" | "bash" | "basic" | "brainfuck" | "csharp" | "c" | "cpp" | "cmake" | "css" | "cisco" | "clojure" | "coffeescript" | "crystal" | "curl" | "dart" | "diff" | "django" | "dns" | "dockerfile" | "elixir" | "elm" | "erlang" | "xlsx" | "fsharp" | "golang" | "gradle" | "graphql" | "haskell" | "http" | "html" | "hlsl" | "ini" | "json" | "java" | "javascript" | "julia" | "kotlin" | "less" | "lua" | "makefile" | "markdown" | "matlab" | "nginx" | "nim" | "nix" | "ocaml" | "objectivec" | "openscad" | "glsl" | "perl" | "php" | "protobuf" | "python" | "reasonml" | "ruby" | "rust" | "scss" | "sql" | "scala" | "shell" | "solidity" | "svelte" | "swift" | "terraform" | "typescript" | "xml" | "yaml" | "tex" | "toml">;
+}
+/**
+ * Default variation for CodeBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Code`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type CodeSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<CodeSliceDefaultPrimary>, never>;
+/**
+ * Slice variation for *CodeBlock*
+ *
+ */
+type CodeSliceVariation = CodeSliceDefault;
+/**
+ * CodeBlock Shared Slice
+ *
+ * - **API ID**: `code`
+ * - **Description**: `Code`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type CodeSlice = prismicT.SharedSlice<"code", CodeSliceVariation>;
 /**
  * Primary content in RichContent → Primary
  *
@@ -501,6 +596,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { AuthorDocumentData, AuthorDocumentDataLinksItem, AuthorDocument, BlogPostDocumentData, BlogPostDocumentDataAuthorItem, BlogPostDocumentDataSlicesSlice, BlogPostDocument, CategoryDocumentData, CategoryDocument, SeriesDocumentData, SeriesDocument, AllDocumentTypes, ContentSliceDefaultPrimary, ContentSliceDefault, ContentSliceVariation, ContentSlice, EmbedSliceDefaultPrimary, EmbedSliceDefault, EmbedSliceVariation, EmbedSlice, GallerySliceDefaultItem, GallerySliceDefault, GallerySliceVariation, GallerySlice, PostSliceDefaultPrimary, PostSliceDefault, PostSliceVariation, PostSlice, QuoteSliceDefaultPrimary, QuoteSliceDefault, QuoteSliceVariation, QuoteSlice };
+        export type { AuthorDocumentData, AuthorDocumentDataLinksItem, AuthorDocument, BlogPostDocumentData, BlogPostDocumentDataAuthorItem, BlogPostDocumentDataSlicesSlice, BlogPostDocument, CategoryDocumentData, CategoryDocument, SeriesDocumentData, SeriesDocument, UpdateDocumentData, UpdateDocument, AllDocumentTypes, CodeSliceDefaultPrimary, CodeSliceDefault, CodeSliceVariation, CodeSlice, ContentSliceDefaultPrimary, ContentSliceDefault, ContentSliceVariation, ContentSlice, EmbedSliceDefaultPrimary, EmbedSliceDefault, EmbedSliceVariation, EmbedSlice, GallerySliceDefaultItem, GallerySliceDefault, GallerySliceVariation, GallerySlice, PostSliceDefaultPrimary, PostSliceDefault, PostSliceVariation, PostSlice, QuoteSliceDefaultPrimary, QuoteSliceDefault, QuoteSliceVariation, QuoteSlice };
     }
 }

@@ -1,0 +1,51 @@
+---
+import { getAllCategories, getAllPosts } from "../../prismic";
+import Layout from "../../layouts/main.astro";
+import PostPreview from "../../components/PostPreview.astro";
+
+export async function getStaticPaths() {
+  const categories = await getAllCategories();
+  const allPosts = await getAllPosts();
+
+  const categoriesWithPosts = categories.map((category) => {
+    const posts = allPosts.filter((post) => {
+      // @ts-ignore
+      return post.data.category.uid === category.uid;
+    });
+    return {
+      category,
+      posts,
+    };
+  });
+
+  return categoriesWithPosts.map(({ category, posts }) => ({
+    params: { slug: category.uid },
+    props: { category, posts },
+  }));
+}
+
+const { category, posts } = Astro.props;
+---
+
+<Layout
+  title={`${category.data.title} | Blog | Leveor`}
+  summary={category.data.summary}
+>
+  {
+    // @ts-ignore
+    posts.map((post) => (
+      <PostPreview
+        title={post.data.title!}
+        summary={
+          // @ts-ignore
+          post.data.summary ? post.data.summary[0]?.text : ""
+        }
+        thumbnail={post.data.thumbnail.url!}
+        thumbnail_alt={post.data.thumbnail.alt!}
+        url={post.uid!}
+        tags={post.tags}
+        publicationDate={post.first_publication_date}
+      />
+    ))
+  }
+</Layout>

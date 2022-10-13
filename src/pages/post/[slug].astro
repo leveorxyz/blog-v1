@@ -1,7 +1,7 @@
 ---
-import { getAllPosts } from "../../prismic";
-import Layout from "../../layouts/main.astro";
-import SliceZone from "../../components/SliceZone.astro";
+import { getAllPosts } from '../../prismic';
+import Layout from '../../layouts/main.astro';
+import SliceZone from '../../components/SliceZone.astro';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -16,6 +16,7 @@ const { post } = Astro.props;
   title={post.data.title}
   summary={post.data.summary[0].text}
   tags={post.tags}
+  thumbnail={post?.data?.thumbnail?.url}
 >
   <div class="flex flex-row justify-center">
     <article class="w-[95%] lg:w-[80ch]">

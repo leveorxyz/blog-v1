@@ -1,7 +1,9 @@
 ---
-import { getAllPosts } from "../../prismic";
-import Layout from "../../layouts/main.astro";
-import SliceZone from "../../components/SliceZone.astro";
+import { getAllPosts } from '../../prismic';
+import Layout from '../../layouts/main.astro';
+import SliceZone from '../../components/SliceZone.astro';
+import SocialShareDesktop from '../../components/SocialShareDesktop.astro';
+import SocialShareMobile from '../../components/SocialShareMobile.astro';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -10,12 +12,14 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const { href } = Astro.url;
 ---
 
 <Layout
   title={post.data.title}
   summary={post.data.summary[0].text}
   tags={post.tags}
+  thumbnail={post?.data?.thumbnail?.url}
 >
   <div class="flex flex-row justify-center">
     <article class="w-[95%] lg:w-[80ch]">
@@ -25,7 +29,11 @@ const { post } = Astro.props;
         alt={post.data.thumbnail.alt}
         class="my-6 aspect-video object-cover"
       />
+      <SocialShareMobile postURL={href} />
       <SliceZone slices={post.data.slices} />
+      <SocialShareMobile postURL={href} />
     </article>
   </div>
+
+  <SocialShareDesktop postURL={href} />
 </Layout>

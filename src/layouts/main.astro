@@ -6,7 +6,8 @@ export type Props = {
   thumbnail?: string;
 };
 
-import { getAllCategories } from '../prismic';
+import { getAllCategories } from "../prismic";
+import Footer from "../components/Footer.astro";
 const { title, summary, tags, thumbnail } = Astro.props;
 
 const categories = await getAllCategories();
@@ -16,13 +17,13 @@ const categories = await getAllCategories();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{title ?? 'Blog | Leveor'}</title>
+    <title>{title ?? "Blog | Leveor"}</title>
     <meta
       name="description"
       content={summary ??
         "Leveor's blog - where we write about the stuff we do"}
     />
-    {tags && <meta name="keywords" content={tags?.join(',') ?? ''} />}
+    {tags && <meta name="keywords" content={tags?.join(",") ?? ""} />}
 
     <meta property="og:url" content="https://blog.leveor.xyz" />
     <meta property="og:title" content={title} />
@@ -76,14 +77,15 @@ const categories = await getAllCategories();
       </div>
     </nav>
     <slot />
+    <Footer />
     <style is:global>
       html {
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
       }
       time,
       pre,
       code {
-        font-family: 'JetBrains Mono', monospace;
+        font-family: "JetBrains Mono", monospace;
       }
       h1,
       h2,
@@ -91,7 +93,7 @@ const categories = await getAllCategories();
       h4,
       h5,
       h6 {
-        font-family: 'Silkscreen', cursive;
+        font-family: "Silkscreen", cursive;
         font-weight: 700;
         color: #fff;
       }

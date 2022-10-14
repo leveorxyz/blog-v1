@@ -1,5 +1,6 @@
 ---
 import { getAllCategories } from "../../prismic";
+import Menu from "./Menu.svelte";
 
 const categories = await getAllCategories();
 ---
@@ -15,6 +16,8 @@ const categories = await getAllCategories();
     />
     <h1 class="text-4xl font-bold text-center">Blog</h1>
   </a>
+
+  <Menu categories={categories} client:visible />
 
   <div class="hidden md:flex text-md md:text-xl">
     {

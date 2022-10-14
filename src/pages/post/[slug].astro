@@ -1,10 +1,11 @@
 ---
-import "svelte-highlight/styles/rebecca.css";
-import { getAllPosts } from "../../prismic";
-import Layout from "../../layouts/main.astro";
-import SliceZone from "../../components/SliceZone.astro";
-import SocialShareDesktop from "../../components/SocialShareDesktop.astro";
-import SocialShareMobile from "../../components/SocialShareMobile.astro";
+import 'svelte-highlight/styles/rebecca.css';
+import { getAllPosts } from '../../prismic';
+import Layout from '../../layouts/main.astro';
+import SliceZone from '../../components/SliceZone.astro';
+import SocialShareDesktop from '../../components/SocialShareDesktop.astro';
+import SocialShareMobile from '../../components/SocialShareMobile.astro';
+import formatDistance from 'date-fns/formatDistance/index.js';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -25,6 +26,14 @@ const { href } = Astro.url;
   <div class="flex flex-row justify-center">
     <article class="w-[95%] lg:w-[80ch]">
       <h1 class="text-4xl font-bold">{post.data.title}</h1>
+      <time datetime={post.first_publication_date} class="text-sm text-gray-400"
+        >{
+          formatDistance(new Date(post.first_publication_date), Date.now(), {
+            addSuffix: true,
+          })
+        }
+      </time>
+
       <img
         src={post.data.thumbnail.url}
         alt={post.data.thumbnail.alt}

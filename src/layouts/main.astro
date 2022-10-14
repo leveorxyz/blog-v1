@@ -51,7 +51,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
   </head>
-  <body class="min-h-screen bg-[#131313] text-gray-50 relative scroll-smooth">
+  <body
+    class="min-h-screen bg-[#131313] text-gray-50 relative scroll-smooth overflow-x-hidden"
+  >
     <div class="w-screen flex flex-column md:flex-row flex-nowrap">
       <SideNav />
       <div class="flex-grow-0 flex-shrink w-full">

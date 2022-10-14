@@ -9,7 +9,7 @@ export interface Props {
   publicationDate: string;
 }
 
-import formatDistance from "date-fns/formatDistance/index.js";
+import formatDistance from 'date-fns/formatDistance/index.js';
 const { title, summary, thumbnail, thumbnail_alt, url, tags, publicationDate } =
   Astro.props;
 ---
@@ -43,7 +43,7 @@ const { title, summary, thumbnail, thumbnail_alt, url, tags, publicationDate } =
           })
         }
       </time>
-      <ul class="flex mt-3">
+      <ul class="flex mt-3 flex-wrap">
         {
           tags?.map((tag) => (
             <li class="mr-3 inline-block text-sm text-violet-400 before:content-['#'] last-of-type:mr-0">

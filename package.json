@@ -37,6 +37,7 @@
     "prettier-plugin-astro": "^0.5.5",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prismic-ts-codegen": "^0.1.5",
-    "slice-machine-ui": "^0.4.2"
+    "slice-machine-ui": "^0.4.2",
+    "svelte-highlight": "^6.2.1"
   }
 }

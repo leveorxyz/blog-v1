@@ -9,7 +9,7 @@ export type Props = {
 import Footer from "../components/common/Footer.astro";
 import TopNav from "../components/common/TopNav.astro";
 import GlobalStyles from "../components/common/GlobalStyles.astro";
-import FooterIcons from "../components/common/FooterIcons.astro";
+import SideNav from "../components/common/SideNav.astro";
 const { title, summary, tags, thumbnail } = Astro.props;
 ---
 
@@ -52,15 +52,7 @@ const { title, summary, tags, thumbnail } = Astro.props;
   </head>
   <body class="min-h-screen bg-[#131313] text-gray-50 relative scroll-smooth">
     <div class="w-screen flex flex-column md:flex-row flex-nowrap">
-      <div
-        class="hidden sticky top-0 h-screen md:flex md:flex-col justify-between items-center w-20 flex-grow flex-shrink-0 bg-violet-700"
-      >
-        <img src="/logo.png" alt="Leveor Logo" class="w-20 h-20 object-cover" />
-
-        <div class="flex flex-col space-y-6 mb-8">
-          <FooterIcons />
-        </div>
-      </div>
+      <SideNav />
       <div class="flex-grow-0 flex-shrink w-full">
         <!-- TOP NAVIGATION BAR -->
         <TopNav />

@@ -12,7 +12,7 @@ export interface Props {
 import formatDistance from "date-fns/formatDistance/index.js";
 const { title, summary, thumbnail, thumbnail_alt, url, tags, publicationDate } =
   Astro.props;
-const postURL = `post/${url}`;
+const postURL = `/post/${url}`;
 ---
 
 <div

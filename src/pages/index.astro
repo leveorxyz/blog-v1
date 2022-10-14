@@ -10,10 +10,6 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
 ---
 
 <Layout>
-  <div class="block md:hidden col-span-1 mb-6">
-    <Updates />
-  </div>
-
   <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 md:gap-12">
     <div class="col-span-1 md:col-span-4 lg:col-span-7">
       <LatestPostPreview
@@ -28,7 +24,7 @@ const [posts, latestPost] = await Promise.all([getAllPosts(), getLatestPost()]);
       />
     </div>
 
-    <div class="hidden md:block col-span-1 md:col-span-2 lg:col-span-5">
+    <div class="block col-span-1 md:col-span-2 lg:col-span-5">
       <Updates />
     </div>
 

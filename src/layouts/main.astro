@@ -6,10 +6,10 @@ export type Props = {
   thumbnail?: string;
 };
 
-import Footer from "../components/common/Footer.astro";
-import TopNav from "../components/common/TopNav.astro";
-import GlobalStyles from "../components/common/GlobalStyles.astro";
-import SideNav from "../components/common/SideNav.astro";
+import Footer from '../components/common/Footer.astro';
+import TopNav from '../components/common/TopNav.astro';
+import GlobalStyles from '../components/common/GlobalStyles.astro';
+import SideNav from '../components/common/SideNav.astro';
 const { title, summary, tags, thumbnail } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -20,14 +20,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width" />
 
     <!-- PAGE TITLE, DESCRIPTION & TAGS -->
-    <title>{title ?? "Blog | Leveor"}</title>
+    <title>{title ?? 'Blog | Leveor'}</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta
       name="description"
       content={summary ??
         "Leveor's blog - where we write about the stuff we do"}
     />
-    {tags && <meta name="keywords" content={tags?.join(",") ?? ""} />}
+    {tags && <meta name="keywords" content={tags?.join(',') ?? ''} />}
 
     <!-- OPEN GRAPH META TAGS -->
     <meta property="og:url" content={canonicalURL} />
@@ -59,7 +59,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <TopNav />
         <div class="px-6 md:px-12 lg:px-24 w-full relative pb-32">
           <!-- PAGE CONTENT -->
-          <slot />
+          <div class="min-h-[calc(100vh-250px)]">
+            <slot />
+          </div>
 
           <!-- FOOTER -->
           <Footer />

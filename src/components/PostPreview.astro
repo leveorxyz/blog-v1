@@ -9,7 +9,7 @@ export interface Props {
   publicationDate: string;
 }
 
-import formatDistance from "date-fns/formatDistance/index.js";
+import formatDistance from 'date-fns/formatDistance/index.js';
 const { title, summary, thumbnail, thumbnail_alt, url, tags, publicationDate } =
   Astro.props;
 const postURL = `/post/${url}`;
@@ -42,7 +42,7 @@ const postURL = `/post/${url}`;
     <div class="hidden md:block">
       <p class="line-clamp-2 mt-3">{summary}</p>
     </div>
-    <ul class="flex">
+    <ul class="flex flex-wrap">
       {
         tags?.map((tag) => (
           <li class="mr-3 inline-block text-sm text-violet-400 before:content-['#'] last-of-type:mr-0">

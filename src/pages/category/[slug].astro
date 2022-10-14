@@ -1,7 +1,7 @@
 ---
-import { getAllCategories, getAllPosts } from "../../prismic";
-import Layout from "../../layouts/main.astro";
-import PostPreview from "../../components/PostPreview.astro";
+import { getAllCategories, getAllPosts } from '../../prismic';
+import Layout from '../../layouts/main.astro';
+import PostPreview from '../../components/PostPreview.astro';
 
 export async function getStaticPaths() {
   const categories = await getAllCategories();
@@ -38,7 +38,7 @@ const { category, posts } = Astro.props;
         title={post.data.title!}
         summary={
           // @ts-ignore
-          post.data.summary ? post.data.summary[0]?.text : ""
+          post.data.summary ? post.data.summary[0]?.text : ''
         }
         thumbnail={post.data.thumbnail.url!}
         thumbnail_alt={post.data.thumbnail.alt!}
@@ -47,5 +47,11 @@ const { category, posts } = Astro.props;
         publicationDate={post.first_publication_date}
       />
     ))
+  }
+
+  {
+    posts.length === 0 && (
+      <h1 class="text-center text-4xl font-bold">No posts found</h1>
+    )
   }
 </Layout>

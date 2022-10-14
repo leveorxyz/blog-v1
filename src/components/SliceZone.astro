@@ -1,16 +1,16 @@
 ---
 const { slices } = Astro.props;
-import CodeSlice from './slices/CodeSlice.jsx';
-import ContentSlice from './slices/ContentSlice.astro';
+import CodeSlice from "./slices/CodeSlice.svelte";
+import ContentSlice from "./slices/ContentSlice.astro";
 ---
 
 <div>
   {
     slices.map((slice: any) => {
       switch (slice.slice_type) {
-        case 'code':
+        case "code":
           return <CodeSlice slice={slice} client:visible />;
-        case 'content':
+        case "content":
           return <ContentSlice slice={slice} />;
         default:
           throw new Error(`Unknown slice type: ${slice.slice_type}`);

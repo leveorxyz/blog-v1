@@ -5,25 +5,23 @@ const categories = await getAllCategories();
 ---
 
 <nav
-  class="flex flex-wrap justify-center md:justify-between items-center py-3 pb-6 md:pb-9 px-6"
+  class="h-16 md:h-20 flex flex-wrap justify-between items-center bg-[#000] mb-6 md:pl-3 md:pr-12 lg:pr-24"
 >
-  <a href="/">
-    <h1
-      class="text-4xl font-bold text-center bg-gradient-to-r from-teal-400 via-sky-400 to-purple-400 bg-clip-text text-transparent pr-0 md:pr-6 pb-3 md:pb-0"
-    >
-      Blog
-    </h1>
+  <a href="/" class="flex flex-row items-center">
+    <img
+      src="/logo.png"
+      alt="Leveor Logo"
+      class="block md:hidden w-16 h-16 object-cover mr-2"
+    />
+    <h1 class="text-4xl font-bold text-center">Blog</h1>
   </a>
 
-  <div class="flex text-md md:text-xl">
+  <div class="hidden md:flex text-md md:text-xl">
     {
       categories.map((c) => (
         <a
-          class="relative pl-3 font-light before:inline-block before:pr-1
-							before:content-['/'] first-of-type:pl-0 hover:bg-gradient-to-r
-							hover:from-teal-400
-							hover:via-sky-400 hover:to-purple-400 hover:bg-clip-text
-							hover:text-transparent md:pl-6"
+          class="relative transform-gpu pl-3 font-bold
+							transition-all before:inline-block before:pr-1 before:content-['/'] first-of-type:pl-0 hover:text-teal-300 md:pl-6"
           href={`/category/${c.uid}`}
         >
           {c.data.title}

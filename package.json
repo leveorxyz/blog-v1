@@ -12,7 +12,6 @@
     "slice": "start-slicemachine"
   },
   "dependencies": {
-    "@astrojs/react": "^1.1.4",
     "@astrojs/svelte": "^1.0.2",
     "@astrojs/tailwind": "^2.0.1",
     "@prismicio/client": "^6.7.1",
@@ -24,15 +23,11 @@
     "canvas-confetti": "^1.5.1",
     "date-fns": "^2.29.3",
     "postcss": "^8.4.14",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-syntax-highlighter": "^15.5.0",
     "svelte": "^3.46.4",
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
     "@prismicio/types": "^0.2.3",
-    "@types/react-syntax-highlighter": "^15.5.5",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.5.5",
     "prettier-plugin-tailwindcss": "^0.1.13",

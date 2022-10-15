@@ -2,7 +2,7 @@ import { createClient, getRepositoryEndpoint } from "@prismicio/client";
 
 const repoName = "leveor";
 const endpoint = getRepositoryEndpoint(repoName);
-const Client = createClient(endpoint);
+export const Client = createClient(endpoint);
 
 export function getPostByUID(uid: string) {
   return Client.getByUID("blog_post", uid);

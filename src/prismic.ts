@@ -26,7 +26,7 @@ export async function getAllUpdates() {
   });
 }
 
-export function getAllCategories() {
+export async function getAllCategories() {
   return Client.getAllByType("category", {
     orderings: {
       field: "document.data.title",

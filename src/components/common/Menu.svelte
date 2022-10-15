@@ -63,7 +63,7 @@
   </div>
   <ul class="flex h-full flex-col justify-center space-y-6 bg-violet-700 p-6">
     {#each categories as category}
-      <li class="font-silkscreen relative text-5xl font-bold text-white">
+      <li class="font-silkscreen relative text-4xl font-bold text-white">
         <a
           href="/category/{category.uid}"
           title="Go to ${category.data.title} category page"

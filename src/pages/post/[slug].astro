@@ -1,22 +1,19 @@
 ---
-import 'svelte-highlight/styles/rebecca.css';
-import { getAllPosts } from '../../prismic';
-import Layout from '../../layouts/main.astro';
-import SliceZone from '../../components/SliceZone.astro';
-import SocialShareDesktop from '../../components/SocialShareDesktop.astro';
-import SocialShareMobile from '../../components/SocialShareMobile.astro';
-import formatDistance from 'date-fns/formatDistance/index.js';
+import "svelte-highlight/styles/rebecca.css";
+import { getAllPosts } from "../../prismic";
+import Layout from "../../layouts/main.astro";
+import SliceZone from "../../components/SliceZone.astro";
+import SocialShareDesktop from "../../components/SocialShareDesktop.astro";
+import SocialShareMobile from "../../components/SocialShareMobile.astro";
+import formatDistance from "date-fns/formatDistance/index.js";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
-  // console.log(posts.map((post) => post.data.slices));
   return posts.map((post) => ({ params: { slug: post.uid }, props: { post } }));
 }
 
 const { post } = Astro.props;
 const { href } = Astro.url;
-
-console.log(post);
 ---
 
 <Layout

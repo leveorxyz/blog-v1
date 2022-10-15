@@ -2,7 +2,6 @@
 const { slice } = Astro.props;
 import * as prismicH from "@prismicio/helpers";
 
-// console.log(JSON.stringify(slice, null, 2));
 const linkResolver = (doc: any) => "/" + doc.uid;
 
 const html = prismicH.asHTML(slice.primary.content, null, {

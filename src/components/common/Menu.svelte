@@ -9,7 +9,7 @@
 </script>
 
 <button
-  class="flex h-16 w-16 items-center justify-center bg-violet-700 text-white md:hidden"
+  class="flex h-12 w-12 items-center justify-center bg-violet-700 text-white md:hidden"
   on:click={toggleNavbar}
 >
   <svg
@@ -34,11 +34,11 @@
 >
   <div class="flex flex-row items-center justify-between">
     <a class="flex flex-row items-center" href="/" title="Go to Home page">
-      <img src="/logo.png" alt="Logo" class="mr-2 h-16 w-16 rounded-sm" />
-      <h2 class="text-4xl">Blog</h2>
+      <img src="/logo.png" alt="Logo" class="mr-2 h-12 w-12 rounded-sm" />
+      <h2 class="text-2xl">Blog</h2>
     </a>
     <button
-      class="flex h-16 w-16 items-center justify-center bg-violet-700 text-white md:hidden"
+      class="flex h-12 w-12 items-center justify-center bg-violet-700 text-white md:hidden"
       on:click={toggleNavbar}
     >
       <svg

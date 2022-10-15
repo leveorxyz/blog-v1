@@ -35,6 +35,10 @@ export async function getAllCategories() {
   });
 }
 
+export async function getCategoryByUID(uid: string) {
+  return Client.getByUID("category", uid);
+}
+
 export async function getLatestPost() {
   const [post] = await Client.getAllByType("blog_post", {
     orderings: {

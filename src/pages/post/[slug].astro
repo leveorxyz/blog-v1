@@ -1,6 +1,10 @@
 ---
-import "svelte-highlight/styles/rebecca.css";
-import { getAllPosts } from "../../prismic";
+import "svelte-highlight/styles/gradient-dark.css";
+import {
+  getAllAuthorsByIDs,
+  getAllPosts,
+  getCategoryByUID,
+} from "../../prismic";
 import Layout from "../../layouts/main.astro";
 import SliceZone from "../../components/SliceZone.astro";
 import SocialShareDesktop from "../../components/SocialShareDesktop.astro";
@@ -14,6 +18,10 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { href } = Astro.url;
+const category = await getCategoryByUID(post.data.category.uid);
+// console.log(JSON.stringify(post.data.author, null, 2));
+const authorIDs = post.data.author.map((author: any) => author.author.id);
+const authors = await getAllAuthorsByIDs(authorIDs);
 ---
 
 <Layout
@@ -25,15 +33,70 @@ const { href } = Astro.url;
   <div class="flex flex-row justify-center">
     <article class="w-[95%] lg:w-[80ch]">
       <h1 class="text-4xl font-bold">{post.data.title}</h1>
-      <time datetime={post.first_publication_date} class="text-sm text-gray-400"
-        >{
-          formatDistance(new Date(post.first_publication_date), Date.now(), {
-            addSuffix: true,
-          })
-        }
-      </time>
+      <div class="flex text-gray-400 my-3 items-center space-x-2 flex-wrap">
+        <div class="flex -space-x-2">
+          {
+            authors.map((author) => (
+              <a
+                href={
+                  // @ts-ignore
+                  author.data.links[0].link.url
+                }
+                title={
+                  // @ts-ignore
+                  `${author.data.name}'s profile`
+                }
+                rel="noopener noreferrer"
+                target="blank"
+              >
+                <div class="group relative">
+                  <img
+                    data-tooltip-target="tooltip-default"
+                    class="h-8 w-8 rounded-full border-2 border-[#131313]"
+                    src={
+                      // @ts-ignore
+                      author.data.avatar.url
+                    }
+                    alt={
+                      // @ts-ignore
+                      `${author.data.name}'s avatar`
+                    }
+                  />
+                  <div class="absolute top-0 left-[50%] hidden min-w-fit -translate-y-full -translate-x-[50%] flex-col items-center group-hover:flex">
+                    <div class="relative z-10 min-w-fit bg-violet-700 p-2 text-center text-xs leading-none text-white shadow-lg">
+                      {
+                        // @ts-ignore
+                        author.data.name
+                      }
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+        <time datetime={post.first_publication_date} class="text-sm">
+          <span class="mr-2">&bull;</span>{
+            formatDistance(new Date(post.first_publication_date), Date.now(), {
+              addSuffix: true,
+            })
+          }
+        </time>
 
-      <span>&#8226; {post.data.category.slug}</span>
+        <span
+          ><span class="mr-2">&bull;</span>in <a
+            class="font-bold underline"
+            href={`/category/${category.uid}`}>{category.data.title}</a
+          >
+        </span>
+      </div>
+      <!-- 
+      <div class="flex flex-row items-center mt-3">
+        <h4 class="mr-2 font-bold text-xl font-jetbrains text-gray-400">
+          {authors.length > 1 ? "Authors:" : "Author:"}
+        </h4> -->
+
+      <!-- </div> -->
 
       <img
         src={post.data.thumbnail.url}

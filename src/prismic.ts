@@ -50,3 +50,8 @@ export async function getLatestPost() {
 
   return post;
 }
+
+
+export async function getAllAuthorsByIDs(ids: string[]) {
+  return Client.getAllByIDs(ids);
+}

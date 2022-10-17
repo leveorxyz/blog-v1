@@ -27,23 +27,22 @@ const html = prismicH.asHTML(slice.primary.content, null, {
     `<ol class="list-decimal list-inside">${children}</ol>`,
   // listItem: ({ children }) => `<li>${children}</li>`,
   // oListItem: ({ children }) => `<li>${children}</li>`,
-  // image: ({ node }) => {
-  //   const linkUrl = node.linkTo ? linkResolver(node.linkTo) : null;
-  //   const linkTarget =
-  //     node.linkTo && node.linkTo.url
-  //       ? `target="${node.linkTo.url}" rel="noopener"`
-  //       : "";
-  //   const wrapperClassList = [node.type || "", "block-img"];
-  //   const img = `<img src="${node.url}" alt="${
-  //     node.alt ? node.alt : ""
-  //   }" copyright="${node.copyright ? node.copyright : ""}" />`;
+  image: ({ node }) => {
+    const linkUrl = node.linkTo ? linkResolver(node.linkTo) : null;
+    const linkTarget =
+      node.linkTo && node.linkTo.url
+        ? `target="${node.linkTo.url}" rel="noopener"`
+        : "";
+    const img = `<img src="${node.url}" alt="${
+      node.alt ? node.alt : ""
+    }" copyright="${node.copyright ? node.copyright : ""}" />`;
 
-  //   return `
-  //       <p class="${wrapperClassList.join(" ")}">
-  //         ${linkUrl ? `<a ${linkTarget} href="${linkUrl}">${img}</a>` : img}
-  //       </p>
-  //     `;
-  // },
+    return `
+        <div class="flex flex-row w-full items-center justify-center">
+          ${linkUrl ? `<a ${linkTarget} href="${linkUrl}">${img}</a>` : img}
+        </div>
+      `;
+  },
   embed: ({ node }) => `
         <div data-oembed="${node.oembed.embed_url}"
           data-oembed-type="${node.oembed.type}"

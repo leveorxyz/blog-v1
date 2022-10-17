@@ -1,8 +1,15 @@
 ---
 import format from "date-fns/format/index.js";
+import differenceInSeconds from "date-fns/differenceInSeconds/index.js";
 import { getAllUpdates } from "../prismic";
 
 const updates = await getAllUpdates();
+const sortedUpdates = updates.sort((update1, update2) =>
+  differenceInSeconds(
+    new Date(update2.data.date!),
+    new Date(update1.data.date!)
+  )
+);
 ---
 
 <div class="p-6 bg-violet-700 max-h-fit">
@@ -10,7 +17,7 @@ const updates = await getAllUpdates();
   <p class="mb-6">What we're upto, at Leveor</p>
   <ul>
     {
-      updates.slice(0, 5).map((update, idx) => (
+      sortedUpdates.slice(0, 5).map((update, idx) => (
         <li class="relative mb-3 border-b border-teal-400 pb-1 before:inline-block before:content-[] last:mb-0">
           {update.data.date && (
             <time datetime={update.data.date} class="text-xs">

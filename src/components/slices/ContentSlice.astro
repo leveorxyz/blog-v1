@@ -1,41 +1,31 @@
 ---
 const { slice } = Astro.props;
-import * as prismicH from "@prismicio/helpers";
+import * as prismicH from '@prismicio/helpers';
 
-const linkResolver = (doc: any) => "/" + doc.uid;
+const linkResolver = (doc: any) => '/' + doc.uid;
 
 const html = prismicH.asHTML(slice.primary.content, null, {
-  heading1: ({ children }) =>
-    `<h1 class="text-2xl lg:text-4xl py-2">${children}</h1>`,
-  heading2: ({ children }) =>
-    `<h2 class="text-xl lg:text-2xl py-2">${children}</h2>`,
-  heading3: ({ children }) =>
-    `<h3 class="text-lg lg:text-xl py-2">${children}</h3>`,
-  heading4: ({ children }) =>
-    `<h4 class="text-lg lg:text-xl py-2">${children}</h4>`,
-  heading5: ({ children }) =>
-    `<h5 class="text-lg lg:text-xl py-2">${children}</h5>`,
-  heading6: ({ children }) =>
-    `<h6 class="text-lg lg:text-xl py-2">${children}</h6>`,
+  heading1: ({ children }) => `<h1 class="text-2xl lg:text-4xl py-2">${children}</h1>`,
+  heading2: ({ children }) => `<h2 class="text-xl lg:text-2xl py-2">${children}</h2>`,
+  heading3: ({ children }) => `<h3 class="text-lg lg:text-xl py-2">${children}</h3>`,
+  heading4: ({ children }) => `<h4 class="text-lg lg:text-xl py-2">${children}</h4>`,
+  heading5: ({ children }) => `<h5 class="text-lg lg:text-xl py-2">${children}</h5>`,
+  heading6: ({ children }) => `<h6 class="text-lg lg:text-xl py-2">${children}</h6>`,
   paragraph: ({ children }) => `<p class="py-3 text-base">${children}</p>`,
   preformatted: ({ node }) => `<pre>${JSON.stringify(node.text)}</pre>`,
-  strong: ({ children }) =>
-    `<strong class="font-bold text-teal-300">${children}</strong>`,
+  strong: ({ children }) => `<strong class="font-bold text-teal-300">${children}</strong>`,
   // em: ({ children }) => `<em>${children}</em>`,
   list: ({ children }) => `<ul class="list-disc list-inside">${children}</ul>`,
-  oList: ({ children }) =>
-    `<ol class="list-decimal list-inside">${children}</ol>`,
+  oList: ({ children }) => `<ol class="list-decimal list-inside">${children}</ol>`,
   // listItem: ({ children }) => `<li>${children}</li>`,
   // oListItem: ({ children }) => `<li>${children}</li>`,
   image: ({ node }) => {
     const linkUrl = node.linkTo ? linkResolver(node.linkTo) : null;
     const linkTarget =
-      node.linkTo && node.linkTo.url
-        ? `target="${node.linkTo.url}" rel="noopener"`
-        : "";
-    const img = `<img src="${node.url}" alt="${
-      node.alt ? node.alt : ""
-    }" copyright="${node.copyright ? node.copyright : ""}" />`;
+      node.linkTo && node.linkTo.url ? `target="${node.linkTo.url}" rel="noopener"` : '';
+    const img = `<img src="${node.url}" alt="${node.alt ? node.alt : ''}" copyright="${
+      node.copyright ? node.copyright : ''
+    }" />`;
 
     return `
         <div class="flex flex-row w-full items-center justify-center">
@@ -52,16 +42,14 @@ const html = prismicH.asHTML(slice.primary.content, null, {
         </div>
       `,
   hyperlink: ({ node, children }) => {
-    const target = node.data.url
-      ? `target="${node.data.url}" rel="noopener"`
-      : "";
-    const url = linkResolver(node.data);
+    const target = node.data.url ? `target="${node.data.url}" rel="noopener"` : '';
+    const url = node.data.url || linkResolver(node.data);
     return `<a ${target} href="${url}" class="underline text-teal-300 hover:text-sky-300">${children}</a>`;
   },
   label: ({ node, children }) => {
     return `<span>${children}</span>`;
   },
-  span: ({ text }) => (text ? text : ""),
+  span: ({ text }) => (text ? text : ''),
 });
 ---
 
